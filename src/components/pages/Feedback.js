@@ -1,17 +1,17 @@
 import axios from "axios";
 import React, { PureComponent } from "react";
-import Products from "./Products";
+
 class Feedback extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      courseId: "",
-      courseName: "",
-      courseInfo: "",
+      registrationId: "",
+      feedbackId: "",
+      //courseInfo: "",
       //courseType: "",
-      courseReview: "",
-      courseRating: "",
-      coursePrice: "",
+      comments: "",
+      Rating: "",
+      //coursePrice: "",
       btnclicked: "false",
       message: "",
     };
@@ -20,13 +20,13 @@ class Feedback extends PureComponent {
   componentDidUpdate() {
     //axios calls
     let inp = {
-      festivalId: this.state.festivalid,
-      courseName: this.state.coursename,
-      courseInfo: this.state.courseinfo,
+      registrationId: this.state.registrationid,
+      feedbackId: this.state.feedbackid,
+      //courseInfo: this.state.courseinfo,
       // courseType: this.state.coursetype,
-      courseReview: this.state.coursereview,
-      courseRating: this.state.courserating,
-      coursePrice: this.state.courseprice,
+      comments: this.state.comments,
+      Rating: this.state.rating,
+      //coursePrice: this.state.courseprice,
     };
     console.log(inp);
     if (this.state.btnclicked === "true") {
@@ -42,22 +42,14 @@ class Feedback extends PureComponent {
   handleChange(event) {
     event.preventDefault();
     let { name, value } = event.target;
-    if (name === "FestivalId") {
-      this.setState({ coursename: value });
-    } else if (name === "courseInfo") {
-      this.setState({ courseinfo: value });
-    } else if (name === "courseId") {
-      this.setState({ courseid: value });
-    } // else if (name === "courseType") {
-    // this.setState({ coursetype: value });
-    //}
-    else if (name === "courseReview") {
-      this.setState({ coursereview: value });
-    } else if (name === "courseRating") {
-      this.setState({ courserating: value });
-    } else if (name === "coursePrice") {
-      this.setState({ courseprice: value });
-    } else {
+    if (name === "registrationId") {
+      this.setState({ feedbackId: value });
+    }
+    else if (name === "comments") {
+      this.setState({ comments: value });
+    } else if (name === "Rating") {
+      this.setState({ rating: value });
+    }else {
       this.setState({
         btnclicked: "true",
       });
@@ -67,6 +59,7 @@ class Feedback extends PureComponent {
     return (
       <div className="feedback">
         <form>
+          <card style={{ width: '18rem' }}>
           <h3
             className="glyphicon glyphicon-expand"
             style={{ color: "white", marginLeft: "600px" }}
@@ -76,119 +69,62 @@ class Feedback extends PureComponent {
           <div className="form-group">
             <label></label>
             <input
-              name="courseName"
+              name="feedbackId"
               onChange={this.handleChange}
               type="text"
-              placeholder="Enter your Fav Course Name"
+              placeholder="Enter your Feedback Id"
               className="form-control"
               style={{
-                width: "700px",
+                width: "500px",
                 marginLeft: "180px",
                 borderRadius: "10px",
                 fontSize: "20px",
               }}
             />
-          </div>
+          </div> 
           <div className="form-group">
             <label></label>
             <input
-              name="courseId"
+              name="registrationId"
               onChange={this.handleChange}
               type="text"
-              placeholder="Enter the Course Id"
+              placeholder="Enter the Registration Id"
               className="form-control"
               style={{
-                width: "700px",
+                width: "500px",
                 marginLeft: "180px",
                 borderRadius: "10px",
                 fontSize: "20px",
               }}
             />
           </div>
+         
           <div className="form-group">
+         <input
+              name="Rating"
+              onChange={this.handleChange}
+              type="text"
+              placeholder="Enter Your Rating"
+              className="form-control"
+              style={{
+                width: "500px",
+                marginLeft: "180px",
+                borderRadius: "10px",
+                fontSize: "20px",
+              }}
+            />
+          </div>
+         <div className="form-group">
             <label></label>
-            <input
-              name="courseInfo"
+            <textarea
+              name="comments"
               onChange={this.handleChange}
-              type="text"
-              placeholder="Enter the Course Info"
-              className="form-control"
-              style={{
-                width: "700px",
-                marginLeft: "180px",
-                borderRadius: "10px",
-                fontSize: "20px",
-              }}
-            />
-          </div>
-          <div className="form-group">
-            <label></label>
-            <input
-              name="courseType"
-              onChange={this.handleChange}
-              type="text"
-              placeholder="Enter your Course Type"
-              className="form-control"
-              style={{
-                width: "700px",
-                marginLeft: "180px",
-                borderRadius: "10px",
-                fontSize: "20px",
-              }}
-            />
-          </div>
-
-          <div className="form-group">
-            <label
-              style={{
-                marginLeft: "360px",
-                fontSize: "25px",
-                color: "white",
-              }}
-            >
-              Enter Your Rating
-            </label>
-            <input
-              name="courseRating"
-              onChange={this.handleChange}
-              type="range"
-              className="form-control"
-              min="0"
-              max="5"
-              style={{
-                width: "700px",
-                marginLeft: "180px",
-                borderRadius: "10px",
-                fontSize: "20px",
-              }}
-            />
-          </div>
-          <div className="form-group">
-            <label></label>
-            <input
-              name="coursePrice"
-              onChange={this.handleChange}
-              type="text"
-              placeholder="Enter your Course Price"
-              className="form-control"
-              style={{
-                width: "700px",
-                marginLeft: "180px",
-                borderRadius: "10px",
-                fontSize: "20px",
-              }}
-            />
-          </div>
-          <div className="form-group">
-            <label></label>
-            <input
-              name="courseReview"
-              onChange={this.handleChange}
-              type="text"
+              type="textarea"
               placeholder="Enter your Review"
               className="form-control"
+              row="5"
               style={{
-                width: "700px",
+                width: "500px",
                 marginLeft: "180px",
                 borderRadius: "10px",
                 fontSize: "20px",
@@ -196,7 +132,7 @@ class Feedback extends PureComponent {
             />
           </div>
 
-          <div className="form-group" style={{ marginLeft: "380px" }}>
+          <div className="form-group" style={{ marginLeft: "300px" }}>
             <input
               className="form-control"
               type="submit"
@@ -214,6 +150,7 @@ class Feedback extends PureComponent {
               onChange={this.handleChange}
             />
           </div>
+          </card>
         </form>
       </div>
     );

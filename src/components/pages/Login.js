@@ -6,6 +6,7 @@ import { Card, Form, Button, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash, faPlusSquare, faSave, faUndo, faKey } from '@fortawesome/free-solid-svg-icons';
 import { authenticateUser } from '../../services/index';
+import Festival from "./Festival";
 
 
 class Login extends React.Component {
@@ -27,7 +28,7 @@ class Login extends React.Component {
   }
 
   initialState = {
-    userid: '', password: '', type: 'password'
+    gnUid: '', gnPassword: '', type: 'password'
   };
   resetLogin = () => {
     this.setState(() => this.initialState);
@@ -36,8 +37,8 @@ class Login extends React.Component {
   submitLogin = event => {
     event.preventDefault();
     const login = {
-      userid: this.state.userid,
-      password: this.state.password,
+      gnUid: this.state.gnUserid,
+      gnPassword: this.state.gnPassword,
     };
   }
 
@@ -54,7 +55,7 @@ class Login extends React.Component {
 
 
   validateUser = () => { // function
-    this.props.authenticateUser(this.state.userid, this.state.password);
+    this.props.authenticateUser(this.state.gnUid, this.state.gnPassword);
     setTimeout(() => {
 
       if (this.props.auth.isLoggedIn) {
@@ -73,8 +74,13 @@ class Login extends React.Component {
 
 
   render() {
-    const {userid, password} = this.state;
+    
+    const {gnUid, gnPassword} = this.state;
     return (
+          
+    
+      
+      
         <Card className="border border-dark bg-secondary text-white text-center">
             <Card.Header><FontAwesomeIcon icon={faPlusSquare} /> Log In</Card.Header>
 
@@ -85,12 +91,12 @@ class Login extends React.Component {
                     <Form.Row>
                         <Form.Group as={Col} controlId="formGridUserId">
                             <Form.Label>User Id</Form.Label>
-                            <Form.Control  autoComplete="off" type="text" name="userid" placeholder="Enter userId" className={"bg-dark text-white"} value={userid} onChange={this.loginChange} />
+                            <Form.Control  autoComplete="off" type="text" name="gnUid" placeholder="Enter userId" className={"bg-dark text-white"} value={gnUid} onChange={this.loginChange} />
                         </Form.Group>
                         <Form.Group as={Col} controlId="formGridPassword">
                             <Form.Label>Password</Form.Label>
-                            <Form.Control  autoComplete="off" type={this.state.type} name="password" placeholder="Enter password" className={"bg-dark text-white"} value={password} onChange={this.loginChange} />
-                            <span className="password__show" style={{position: "absolute", top: "167px", left: "841px", cursor: "pointer"}} onClick={this.handleClick}>{this.state.type === 'text' ? <FontAwesomeIcon icon={faEyeSlash}/> : <FontAwesomeIcon icon={faEye}/>}</span>
+                            <Form.Control  autoComplete="off" type={this.state.type} name="gnPassword" placeholder="Enter password" className={"bg-dark text-white"} value={gnPassword} onChange={this.loginChange} />
+                            <span className="password__show" style={{position: "absolute", top: "167px", left: "915px", cursor: "pointer"}} onClick={this.handleClick}>{this.state.type === 'text' ? <FontAwesomeIcon icon={faEyeSlash}/> : <FontAwesomeIcon icon={faEye}/>}</span>
                             {/* <Form.Control  autoComplete="off" type="text" name="password" placeholder="Enter password" className={"bg-dark text-white"} value={password} onChange={this.loginChange} /> */}
                         </Form.Group>
                     </Form.Row>
@@ -111,6 +117,7 @@ class Login extends React.Component {
     );
 }
 }
+
 const mapStateToProps = state => {
 return {
     auth:state.auth
@@ -119,124 +126,10 @@ return {
 
 const mapDispatchToProps = dispatch => {
 return {
-    authenticateUser: (userId, password) => dispatch(authenticateUser(userId, password))
+    authenticateUser: (gnUid, gnPassword) => dispatch(authenticateUser(gnUid, gnPassword))
 };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
 
 
-
-
-//   render() {
-//     if (this.state.respdata === "") {
-//       return (
-//         <div className="sign-up">
-//           <div
-//             style={{
-//               border: "2px solid white",
-//               height: "700px",
-//               width: "500px",
-//               backgroundImage: "linear-gradient(#ffd89b, #19547b)",
-//               opacity: "0.9",
-//               borderRadius: "10px",
-//             }}
-//           >
-//             <p
-//               style={{
-//                 color: "white",
-//                 marginLeft: "110px",
-//                 marginTop: "10px",
-//                 fontFamily: "cursive",
-//                 fontSize: "50px",
-//               }}
-//             >
-//               User Login
-//             </p>
-//             <form method="post" onSubmit={this.handleSubmit}>
-//               <div className="form-group">
-//                 <p
-//                   style={{
-//                     color: "white",
-//                     marginLeft: "50px",
-//                     marginTop: "50px",
-//                     fontSize: "50px",
-//                   }}
-//                 >
-//                   UserId
-//                 </p>
-//                 <label style={{ color: "white", fontSize: "25px" }}></label>
-//                 <input
-//                   name="userid"
-//                   onChange={this.handleChange}
-//                   type="text"
-//                   placeholder="Enter your Userid"
-//                   className="form-control form-control-lg"
-//                   style={{
-//                     borderRadius: "10px",
-//                     height: "50px",
-//                     width: "400px",
-//                     marginLeft: "40px",
-//                     fontSize: "20px",
-//                   }}
-//                   required
-//                 />
-//                 <div className="form-group">
-//                   <p
-//                     style={{
-//                       color: "white",
-//                       marginLeft: "50px",
-//                       fontSize: "50px",
-//                     }}
-//                   >
-//                     Password
-//                   </p>
-//                   <label style={{ color: "white", fontSize: "25px" }}></label>
-//                   <input
-//                     name="password"
-//                     onChange={this.handleChange}
-//                     type="password"
-//                     placeholder="Enter your password"
-//                     className="form-control form-control-lg"
-//                     style={{
-//                       marginTop: "1px",
-//                       borderRadius: "15px",
-//                       width: "400px",
-//                       height: "50px",
-//                       marginLeft: "40px",
-//                       fontSize: "20px",
-//                     }}
-//                     required
-//                   />
-//                 </div>
-//                 <div className="form-group">
-//                   <input
-//                     type="submit"
-//                     value="Submit"
-//                     style={{
-//                       borderRadius: "20px",
-//                       width: "150px",
-//                       height: "50px",
-//                       marginLeft: "175px",
-//                       color: "black",
-//                       fontSize: "20px",
-//                       backgroundImage: "linear-gradient(#eacda3, #d6ae7b)",
-//                     }}
-//                   />
-//                 </div>
-//               </div>
-//             </form>
-//           </div>
-//         </div>
-//       );
-//     } else {
-//       return (
-//         <div>
-//           <h1>Logged in</h1>
-//         </div>
-//       );
-//     }
-//   }
-// }
-
-// export default Login;

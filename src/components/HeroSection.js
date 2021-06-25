@@ -6,7 +6,7 @@ import "./HeroSection.css";
 function HeroSection() {
   return (
     <div className="hero-container">
-      <video src="/videos/video-1.mp4" autoPlay loop muted />
+      <video src="/videos/festival.mp4" autoPlay loop muted />
       <h1>CULTUROFESTO</h1>
       <p>COME CELEBRATE WITH US</p>
       <div className="hero-btns">

@@ -13,7 +13,7 @@ function Cards() {
               src="/images/baisakhi.jpg"
               text=" India is the country where most numbers of festivals celebrated in the whole world"
               label="Festivals"
-              path="/services"
+              path="/sign-up"
             />
             <CardItem
               src="/images/durgapuja.jpg"

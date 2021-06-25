@@ -1,16 +1,16 @@
 import * as AT from './authenticationTypes';//if incase AT is not taken as alias,then variable will be called using authenticationtypes.variable
 import axios from 'axios';// backend linking like get,put,post,delete
  
-export const authenticateUser = (userid, password) => {
+export const authenticateUser = (gnUid, gnPassword) => {
     const credentials = {
-        userId:userid,
-        password:password,
+        gnUid:gnUid,
+        gnPassword:gnPassword,
     };
     return dispatch => {
         dispatch({
             type: AT.LOGIN_REQUEST
         });
-        axios.post("http://localhost:9090/login", credentials)
+        axios.post("http://localhost:8082/home/login", credentials)
             .then(response => {
                 let token = response.data;
                 console.log(response.data);
