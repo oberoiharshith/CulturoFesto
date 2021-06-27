@@ -79,12 +79,22 @@ class Login extends React.Component {
     return (
           
     
+      // <div className="hero-image">
       
-      
-        <Card className="border border-dark bg-secondary text-white text-center">
+        <Card className="hero-image">
             <Card.Header><FontAwesomeIcon icon={faPlusSquare} /> Log In</Card.Header>
 
-
+           <div
+            style={{
+             margin: "auto",
+  width: "30%",
+  height:"50%",
+  border: "3px solid green",
+  padding: "10px",
+  backgroundImage: "linear-gradient(#ffd89b, #19547b)",
+              opacity: "0.9",
+            }}
+          >
 
             <Form onReset={this.resetLogin} onSubmit={this.submitLogin} onClick={this.ForgetPass} id="LoginFormId" style={{height:"42vh",margin:"auto",marginBottom:"50px"}}>
                 <Card.Body>
@@ -96,7 +106,7 @@ class Login extends React.Component {
                         <Form.Group as={Col} controlId="formGridPassword">
                             <Form.Label>Password</Form.Label>
                             <Form.Control  autoComplete="off" type={this.state.type} name="gnPassword" placeholder="Enter password" className={"bg-dark text-white"} value={gnPassword} onChange={this.loginChange} />
-                            <span className="password__show" style={{position: "absolute", top: "167px", left: "915px", cursor: "pointer"}} onClick={this.handleClick}>{this.state.type === 'text' ? <FontAwesomeIcon icon={faEyeSlash}/> : <FontAwesomeIcon icon={faEye}/>}</span>
+                            <span className="password__show" style={{position: "absolute", top: "284px", left: "1072px", cursor: "pointer"}} onClick={this.handleClick}>{this.state.type === 'text' ? <FontAwesomeIcon icon={faEyeSlash}/> : <FontAwesomeIcon icon={faEye}/>}</span>
                             {/* <Form.Control  autoComplete="off" type="text" name="password" placeholder="Enter password" className={"bg-dark text-white"} value={password} onChange={this.loginChange} /> */}
                         </Form.Group>
                     </Form.Row>
@@ -113,7 +123,10 @@ class Login extends React.Component {
 
                 </Card.Footer>
             </Form>
+            </div>
         </Card>
+        
+        // </div>
     );
 }
 }

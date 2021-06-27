@@ -53,15 +53,16 @@ class SignUp extends PureComponent {
   render() {
     if (this.state.respdata === "") {
       return (
-        <div className="sign-up">
+          <div className="hero-image">
           <div
             style={{
-              border: "2px solid white",
-              height: "800px",
-              width: "500px",
-              backgroundImage: "linear-gradient(#ffd89b, #19547b)",
+             margin: "auto",
+  width: "26%",
+  height:"100%",
+  border: "3px solid green",
+  padding: "10px",
+  backgroundImage: "linear-gradient(#ffd89b, #19547b)",
               opacity: "0.9",
-              borderRadius: "10px",
             }}
           >
             <h6
@@ -76,7 +77,7 @@ class SignUp extends PureComponent {
               SignUp
             </h6>
             <form onSubmit={this.handleSubmit} method="post">
-              <div className="form-group" style={{ height: "80px" }}>
+              <div className="form-group" style={{ height: "32px" }}>
                 <label style={{ color: "white", fontSize: "25px" }}>
                   <input
                     name="firstName"
@@ -85,9 +86,10 @@ class SignUp extends PureComponent {
                     placeholder="Firstname"
                     className="form-control form-control-lg"
                     style={{
-                      borderRadius: "15px",
-                      height: "50px",
-                      width: "400px",
+                      margin: "auto",
+                      width: "104%",
+                      border: "3px solid green",
+                      padding: "10px",
                       marginLeft: "40px",
                       fontSize: "20px",
                     }}
@@ -95,7 +97,7 @@ class SignUp extends PureComponent {
                   />
                 </label>
               </div>
-              <div className="form">
+              <div className="form"style={{ height: "80px" }}>
                 <label style={{ color: "white", fontSize: "25px" }}></label>
                 <input
                   name="lastName"
@@ -104,16 +106,17 @@ class SignUp extends PureComponent {
                   placeholder="Lastname"
                   className="form-control form-control-lg"
                   style={{
-                    borderRadius: "15px",
-                    width: "400px",
-                    height: "50px",
-                    marginLeft: "40px",
-                    fontSize: "20px",
+                     margin: "auto",
+                      width: "76%",
+                      border: "3px solid green",
+                      padding: "10px",
+                      marginLeft: "40px",
+                      fontSize: "20px",
                   }}
                   required
                 />
               </div>
-              <div className="form" style={{ height: "80px" }}>
+              <div className="form" style={{ height: "32px" }}>
                 <label style={{ color: "white", fontSize: "25px" }}>
                   <input
                     name="iDp"
@@ -122,9 +125,10 @@ class SignUp extends PureComponent {
                     placeholder="Unique ID"
                     className="form-control form-control-lg"
                     style={{
-                      borderRadius: "15px",
-                      width: "400px",
-                      height: "50px",
+                      margin: "auto",
+                      width: "104%",
+                      border: "3px solid green",
+                      padding: "10px",
                       marginLeft: "40px",
                       fontSize: "20px",
                     }}
@@ -132,7 +136,7 @@ class SignUp extends PureComponent {
                   />
                 </label>
               </div>
-              <div className="form">
+              <div className="form"style={{ height: "55px" }}>
                 <label style={{ color: "white", fontSize: "25px" }}></label>
                 <input
                   name="mobile"
@@ -141,11 +145,12 @@ class SignUp extends PureComponent {
                   placeholder="Mobile"
                   className="form-control form-control-lg"
                   style={{
-                    borderRadius: "15px",
-                    width: "400px",
-                    height: "50px",
-                    marginLeft: "40px",
-                    fontSize: "20px",
+                    margin: "auto",
+                      width: "76%",
+                      border: "3px solid green",
+                      padding: "10px",
+                      marginLeft: "40px",
+                      fontSize: "20px",
                   }}
                   required
                 />
@@ -159,11 +164,12 @@ class SignUp extends PureComponent {
                   placeholder="Date of Birth"
                   className="form-control form-control-lg"
                   style={{
-                    borderRadius: "15px",
-                    width: "400px",
-                    height: "50px",
-                    marginLeft: "40px",
-                    fontSize: "20px",
+                    margin: "auto",
+                      width: "76%",
+                      border: "3px solid green",
+                      padding: "10px",
+                      marginLeft: "40px",
+                      fontSize: "20px",
                   }}
                   required
                 />
@@ -172,19 +178,19 @@ class SignUp extends PureComponent {
                 <input
                   type="submit"
                   style={{
-                    borderRadius: "20px",
-                    width: "150px",
-                    height: "50px",
-                    marginLeft: "175px",
-                    color: "black",
-                    fontSize: "20px",
+                    margin: "auto",
+                      width: "35%",
+                      border: "3px solid green",
+                      padding: "10px",
+                      marginLeft: "128px",
+                      fontSize: "20px",
                     backgroundImage: "linear-gradient(#eacda3, #d6ae7b)",
                   }}
                 />
               </div>
             </form>
           </div>
-        </div>
+          </div>
       );
     } else {
       return (

@@ -2,7 +2,7 @@ import React from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { ButtonGroup,Button, Card, Table, InputGroup } from 'react-bootstrap';
 import { faEdit, faList, faStepBackward, faStepForward, faTrash } from '@fortawesome/free-solid-svg-icons';
-import {axios} from 'axios';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 class FestivalAdmin extends React.Component { 
     constructor(props)
@@ -13,6 +13,7 @@ class FestivalAdmin extends React.Component {
             current:1,
             next:2
         };
+        
     }
 
     prevPage=()=>{
@@ -43,36 +44,20 @@ class FestivalAdmin extends React.Component {
         }
 
 
-        deleteCourse = (festivalId) => {
+        deleteRow(festivalId, e){
             axios.delete(`http://localhost:8082/festival/delete/${festivalId}`)
             .then(response => {
                 if(response.data != null)
                 {
                     alert(response.data);
                     this.setState({
-                        festivals:this.state.courses.filter(festival=>festival.festivalId !== festivalId)
+                        festivals:this.state.festival.filter(festival=>festival.festivalId !== festivalId)
                     });
                 }
             });
            
          };
 
-
-        // deleteCourse = (festivalId)=>{
-        //     axios.delete("http://localhost:8082/festival/delete/"+festivalId)
-        //         .then(response=>{
-        //             if(response.data!=null){
-        //                 alert("Deleted Successfully");
-        //             }
-        //         });
-            
-        // };
-
-        // componentDidMount() {
-        //     // Simple DELETE request with fetch
-        //     fetch('http://localhost:8082/festival/delete/{festivalI}', { method: 'DELETE' })
-        //         .then(() => this.setState({ status: 'Delete successful' }));
-        // }
 
     render() {
         const {festival,current,next}=this.state;
@@ -121,8 +106,8 @@ class FestivalAdmin extends React.Component {
                                         {/* <td>{festival.foodPriceChildren}</td> */}
                                         <td>
                                             <ButtonGroup>
-                                                <Link to={"AddFestival/"+festival.festivalName} className="btn btn-sm btn-outline-primary"><FontAwesomeIcon icon={faEdit} /></Link>{' '}
-                                                <Button size="sm" variant="outline-danger" onClick={this.deleteCourse.bind(this, festival.festivalId)}><FontAwesomeIcon icon={faTrash}/></Button>
+                                                {/* <Link to={"AddFestival/"+festival.festivalName} className="btn btn-sm btn-outline-primary"><FontAwesomeIcon icon={faEdit} /></Link>{' '} */}
+                                                <Button size="sm" variant="outline-danger" onClick={(e)=>this.deleteRow(festival.festivalId, e)}><FontAwesomeIcon icon={faTrash}/></Button>
                                             </ButtonGroup>
                                         </td>
                                     </tr>
