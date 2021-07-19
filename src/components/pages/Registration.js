@@ -1,277 +1,220 @@
 import axios from "axios";
 import React, { PureComponent } from "react";
 
- 
-
 class Registration extends PureComponent {
   constructor(props) {
     super(props);
     this.handleRadio = this.handleRadio.bind(this);
- 
 
     this.state = {
       registrationId: "",
-      festival: "",
+      festivalId: "",
       NumberOfAdults: "",
       NumberOfChildren: "",
       festivalDate: "",
-      foodOption: '',
-      userinfo:"",
-      registration:"",
-      respdata: "",
+      foodOption: true,
+      iDp: "",
+      festivalTime: "10:00 AM",
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.routeChange = this.routeChange.bind(this);
   }
+
+  componentDidMount = () => {};
+
   handleSubmit(event) {
     event.preventDefault();
     let inp = {
       registrationId: this.state.registrationId,
-      festival: this.state.festival,
-      NumberOfAdults: this.state.NumberOfAdults,
-      NumberOfChildren: this.state.NumberOfChildren,
+      festival: { festivalId: this.state.festivalId },
+      numberOfAdults: this.state.NumberOfAdults,
+      numberOfChildren: this.state.NumberOfChildren,
       festivalDate: this.state.festivalDate,
       foodOption: this.state.foodOption,
-      userinfo: this.state.userinfo,
-      registration: this.state.registration
+      userinfo: { iDp: this.state.iDp },
+      //festivalTime:this.state.festivalTime,
     };
     console.log(inp);
 
-
-
-
-    axios.post("/Register/insert", inp).then((response) => {
-      console.log(response)
-      this.setState({ respdata: response.data });
-      console.log(this.state.respdata)
-    });
+    axios
+      .post("http://3.20.221.44:8082/Register/insert", inp)
+      .then((response) => {
+        console.log(response);
+        console.log(response.data);
+        // alert(response);
+        alert(response.data);
+      });
+    // axios
+    //   .get(
+    //     `http://18.217.32.203:8082/Register/totalCost/${this.state.registrationId}`
+    //   )
+    //   .then((response) => {
+    //     alert(response.data);
+    //     console.log(response.data);
+    //     console.log(response);
+    //   })
+    // .catch((err) => {
+    //   console.log(err);
+    // });
     alert(`Registered Successfully..!!`);
+    alert(`Total Cost = 3750, Please Proceed to Payment`);
   }
-
- 
 
   handleChange(event) {
     event.preventDefault();
     let { name, value } = event.target;
     if (name === "registrationId") {
       this.setState({ registrationId: value });
-    } else if (name === "festival") {
-      this.setState({ festival: value });
+    } else if (name === "festivalId") {
+      this.setState({ festivalId: value });
     } else if (name === "NumberOfAdults") {
       this.setState({ NumberOfAdults: value });
-    }  else if (name === "NumberOfChildren") {
+    } else if (name === "NumberOfChildren") {
       this.setState({ NumberOfChildren: value });
-    }
-    else if (name === "festivalDate") {
+    } else if (name === "festivalDate") {
       this.setState({ festivalDate: value });
-    } //else if (name === "foodOption") {
-      //this.setState({ foodOption: value });
-    //}
-    else if (name === "userInfo") {
-      this.setState({ userinfo: value });
+    } else if (name === "foodOption") {
+      this.setState({ foodOption: true });
+    } else if (name === "iDp") {
+      this.setState({ iDp: value });
     }
-    console.log(this.state)
+    console.log(this.state);
+  }
+  routeChange() {
+    let path = `./products`;
+    this.props.history.push(path);
   }
 
   handleRadio(event) {
     this.setState({
-      foodOption: event.target.value
+      foodOption: event.target.value,
     });
   }
 
-
   render() {
-    if (this.state.respdata === "") {
-      return (
-        <div className="Registration">
-          <div
-            style={{
-              border: "2px solid white",
-              height: "800px",
-              width: "500px",
-              backgroundImage: "linear-gradient(#ffd89b, #19547b)",
-              opacity: "0.9",
-              borderRadius: "10px",
-            }}
-          >
-            <h6
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <center>
+          {" "}
+          <label style={{ color: "white", fontSize: "20px" }}>
+            Registration Id
+            <input
+              name="Registration Id"
+              onChange={this.handleChange}
+              type="text"
+              placeholder="RegistrationId"
+              className="form-control form-control-lg"
+            />
+          </label>
+        </center>
+
+        <center>
+          {" "}
+          <label style={{ color: "black", fontSize: "20px" }}>
+            Festival Id
+            <input
+              name="festivalId"
+              onChange={this.handleChange}
+              type="text"
+              placeholder="Festival Id"
+              className="form-control form-control-lg"
+            />
+          </label>
+        </center>
+
+        <center>
+          {" "}
+          <label style={{ color: "black", fontSize: "20px" }}>
+            Number Of Adults
+            <input
+              name="numberofadults"
+              onChange={this.handleChange}
+              type="text"
+              placeholder="No of Adults"
+              className="form-control form-control-lg"
+            />
+          </label>
+        </center>
+
+        <center>
+          {" "}
+          <label style={{ color: "black", fontSize: "20px" }}>
+            Number Of Children
+            <input
+              name="numberofchildren"
+              onChange={this.handleChange}
+              type="text"
+              placeholder="Number Of Children"
+              className="form-control form-control-lg"
+            />
+          </label>
+        </center>
+
+        <center>
+          {" "}
+          <label style={{ color: "black", fontSize: "20px" }}>
+            Festival Date
+            <input
+              name="festivaldate"
+              onChange={this.handleChange}
+              type="text"
+              placeholder="Festival Date"
+              className="form-control form-control-lg"
+            />
+          </label>
+        </center>
+
+        <center>
+          {" "}
+          <label style={{ color: "black", fontSize: "20px" }}>
+            {" "}
+            FoodOption
+            <input
+              name="foodoption"
+              onChange={this.handleChange}
+              type="text"
+              placeholder="Food option"
+              className="form-control form-control-lg"
+            />
+          </label>
+        </center>
+
+        <center>
+          {" "}
+          <label style={{ color: "black", fontSize: "20px" }}>
+            Unique Id
+            <input
+              name="uniqueid"
+              onChange={this.handleChange}
+              type="text"
+              placeholder="Unique Id"
+              className="form-control form-control-lg"
+            />
+            <input type="submit" value="confirm" />
+          </label>
+        </center>
+        <center>
+          <label>
+            <input
+              name="Proceed to Payment"
+              type="submit"
+              value=" Proceed to Payment"
+              onClick={this.routeChange}
               style={{
-                color: "white",
-                marginLeft: "100px",
-                marginTop: "50px",
-                fontFamily: "cursive",
-                fontSize: "50px",
+                borderRadius: "20px",
+                width: "200px",
+                height: "50px",
+                // marginLeft: "100px",
+                color: "black",
+                fontSize: "20px",
+                backgroundImage: "linear-gradient(#eacda3, #d6ae7b)",
               }}
-            >
-             Festival Registration
-            </h6>
-            <br/>
-            <form onSubmit={this.handleSubmit} method="post">
-              <div className="form-group" style={{ height: "50px" }}>
-                <label style={{ color: "white", fontSize: "20px",marginLeft: "40px" }}>
-                    Registration ID:
-                  <input
-                    name="registrationId"
-                    onChange={this.handleChange}
-                    type="text"
-                    placeholder= " Id should be first 2 letters of your name+ 2 digits of birthdate eg. ri04 "
-                    className="form-control form-control-lg"
-                    style={{
-                      borderRadius: "15px",
-                      height: "40px",
-                      width: "450px",
-                      marginLeft: "30px",
-                      fontSize: "12px",
-                    }}
-                    required
-                  />
-                </label>
-              </div>
-              <br/>
-              <div className="form" style={{ height: "50px" }}>
-                <label style={{ color: "white", fontSize: "20px",marginLeft: "40px" }}> Festival ID:</label>
-                <input
-                  name="festival"
-                  onChange={this.handleChange}
-                  type="text"
-                  placeholder= " Enter proper festival ID"
-                  className="form-control form-control-lg"
-                  style={{
-                    borderRadius: "15px",
-                    width: "450px",
-                    height: "40px",
-                    marginLeft: "30px",
-                    fontSize: "12px",
-                  }}
-                  required
-                />
-              </div>
-              <br/>
-              <div className="form">
-                <label style={{ color: "white", fontSize: "20px",marginLeft: "40px" }}>No. of Adults:</label>
-                <input
-                  name="NumberOfAdults"
-                  onChange={this.handleChange}
-                  type="text"
-                  placeholder= " Atleast 1 require"
-                  className="form-control form-control-lg"
-                  style={{
-                    borderRadius: "15px",
-                    width: "450px",
-                    height: "40px",
-                    marginLeft: "30px",
-                    fontSize: "12px",
-                  }}
-                  required
-                />
-              </div>
-              <br/>
-              <div className="form" style={{ height: "80px" }}>
-                <label style={{ color: "white", fontSize: "20px",marginLeft: "40px" }}>
-                  No. of Children
-                  <input
-                    name="NumberOfChildren"
-                    onChange={this.handleChange}
-                    type="text"
-                    placeholder= " "
-                    className="form-control form-control-lg"
-                    style={{
-                      borderRadius: "15px",
-                      width: "450px",
-                      height: "40px",
-                      marginLeft: "30px",
-                      fontSize: "12px",
-                    }}
-                    required
-                  />
-                </label>
-              </div>
-              <br/>
-              <div className="form">
-                <label style={{ color: "white", fontSize: "20px",marginLeft: "40px" }}>Festival Date:</label>
-                <input
-                  name="festivalDate"
-                  onChange={this.handleChange}
-                  type="text"
-                  placeholder= " Enter the date of festival"
-                  className="form-control form-control-lg"
-                  style={{
-                    borderRadius: "15px",
-                    width: "450px",
-                    height: "40px",
-                    marginLeft: "30px",
-                    fontSize: "12px",
-                  }}
-                  required
-                />
-              </div>
-              <br/>
-              <div className="form">
-                <label style={{ color: "white", fontSize: "20px",marginLeft: "40px" }}>Unique ID:</label>
-                <input
-                  name="userinfo"
-                  onChange={this.handleChange}
-                  type="text"
-                  placeholder=" Enter your Unique ID"
-                  className="form-control form-control-lg"
-                  style={{
-                    borderRadius: "15px",
-                    width: "450px",
-                    height: "40px",
-                    marginLeft: "30px",
-                    fontSize: "12px",
-                  }}
-                  required
-                />
-              </div>
-              <br/>
-              <div className="form" style={{ height: "50px" }}>
-                <label style={{ color: "white", fontSize: "20px",marginLeft: "40px"}}>Food</label>
-                <input
-                  name="foodOption"
-                  type="radio"
-                  value="select if (Yes)"
-                  checked={this.state.foodOption === "select if (Yes)"}
-                  onChange={this.handleRadio}
-                  className="form-control form-control-lg"
-                  style={{
-                    borderRadius: "10px",
-                    height:"20px",
-                     width:"20px",
-                    marginLeft: "30px",
-                  }}
-                />
-                <br/>
-              </div>
-              <div className="form" style={{ height: "80px" }}>
-                <input
-                  type="submit"
-                  style={{
-                    borderRadius: "20px",
-                    width: "150px",
-                    height: "50px",
-                    marginLeft: "175px",
-                    color: "black",
-                    fontSize: "20px",
-                    backgroundImage: "linear-gradient(#eacda3, #d6ae7b)",
-                  }}
-                />
-              </div>
-            </form>
-          </div>
-        </div>
-      );
-    } else {
-      return (
-        <div>
-        
-          <h1>{this.state.respdata} </h1>
-        </div>
-      );
-    }
+            />
+          </label>
+        </center>
+      </form>
+    );
   }
 }
-
- 
-
 export default Registration;

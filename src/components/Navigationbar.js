@@ -56,8 +56,8 @@ class Navigationbar extends React.Component {
         <>
             <Nav className="mr-auto me-auto">
                  <Link to="/" className="navbar-logo">CulturoFesto<i class="fab fa-typo3" /></Link>
-                <Link to="/feedback" className="nav-links">Feedback</Link>
-                <Link to="/FestivalAdmin" className="nav-links">Editable Festival</Link>
+                <Link to="/UserAdmin" className="nav-links">UserInfo</Link>
+                <Link to="/FestivalAdmin" className="nav-links">Edit Festival</Link>
                 <Link to="/AddFestival" className="nav-links">Add Festival</Link>
             </Nav>
             <Nav className="navbar-right">

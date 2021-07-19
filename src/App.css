@@ -26,12 +26,12 @@
 }
 
 .products {
-  background-image: url("./images/img-1.jpg");
-  background-position: center;
-  background-size: fill;
-  background-repeat: no-repeat;
-  color: #fff;
-  font-size: 100px;
+  background-image: url("./images/payment.jpg"); /* The image used */
+  background-color: #cccccc; /* Used if the image is unavailable */
+  height: 300px; /* You must set a specified height */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
 }
 
 .sign-up {
@@ -44,17 +44,26 @@
 }
 
 .feedback {
-  background-image: url("./images/img-2.jpg");
-  background-position: center;
-  background-size: fill;
-  background-repeat: no-repeat;
-  color: #fff;
-  font-size: 100px;
+  background-image: url("./images/img-2.jpg"); /* The image used */
+  background-color: #cccccc; /* Used if the image is unavailable */
+  height: 500px; /* You must set a specified height */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
 }
 .hero-image {
   background-image: url("./images/holi-festival-india-shutterstock_540790687.jpg"); /* The image used */
   background-color: #cccccc; /* Used if the image is unavailable */
   height: 500px; /* You must set a specified height */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+}
+
+.registration {
+  background-image: url("./images/holi-festival-india-shutterstock_540790687.jpg"); /* The image used */
+  background-color: #cccccc; /* Used if the image is unavailable */
+  height: 850px; /* You must set a specified height */
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover; /* Resize the background image to cover the entire container */

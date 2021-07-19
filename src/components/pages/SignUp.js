@@ -27,11 +27,13 @@ class SignUp extends PureComponent {
     };
     console.log(inp);
 
-    axios.post("/home/register", inp).then((response) => {
-      console.log(response)
-      this.setState({ respdata: response.data });
-      console.log(this.state.respdata)
-    });
+    axios
+      .post("http://3.20.221.44:8082/home/register", inp)
+      .then((response) => {
+        console.log(response);
+        this.setState({ respdata: response.data });
+        console.log(this.state.respdata);
+      });
   }
 
   handleChange(event) {
@@ -48,20 +50,20 @@ class SignUp extends PureComponent {
     } else if (name === "dob") {
       this.setState({ dob: value });
     }
-    console.log(this.state)
+    console.log(this.state);
   }
   render() {
     if (this.state.respdata === "") {
       return (
-          <div className="hero-image">
+        <div className="hero-image">
           <div
             style={{
-             margin: "auto",
-  width: "26%",
-  height:"100%",
-  border: "3px solid green",
-  padding: "10px",
-  backgroundImage: "linear-gradient(#ffd89b, #19547b)",
+              margin: "auto",
+              width: "26%",
+              height: "100%",
+              border: "3px solid green",
+              padding: "10px",
+              backgroundImage: "linear-gradient(#ffd89b, #19547b)",
               opacity: "0.9",
             }}
           >
@@ -97,7 +99,7 @@ class SignUp extends PureComponent {
                   />
                 </label>
               </div>
-              <div className="form"style={{ height: "80px" }}>
+              <div className="form" style={{ height: "80px" }}>
                 <label style={{ color: "white", fontSize: "25px" }}></label>
                 <input
                   name="lastName"
@@ -106,12 +108,12 @@ class SignUp extends PureComponent {
                   placeholder="Lastname"
                   className="form-control form-control-lg"
                   style={{
-                     margin: "auto",
-                      width: "76%",
-                      border: "3px solid green",
-                      padding: "10px",
-                      marginLeft: "40px",
-                      fontSize: "20px",
+                    margin: "auto",
+                    width: "76%",
+                    border: "3px solid green",
+                    padding: "10px",
+                    marginLeft: "40px",
+                    fontSize: "20px",
                   }}
                   required
                 />
@@ -136,7 +138,7 @@ class SignUp extends PureComponent {
                   />
                 </label>
               </div>
-              <div className="form"style={{ height: "55px" }}>
+              <div className="form" style={{ height: "55px" }}>
                 <label style={{ color: "white", fontSize: "25px" }}></label>
                 <input
                   name="mobile"
@@ -146,11 +148,11 @@ class SignUp extends PureComponent {
                   className="form-control form-control-lg"
                   style={{
                     margin: "auto",
-                      width: "76%",
-                      border: "3px solid green",
-                      padding: "10px",
-                      marginLeft: "40px",
-                      fontSize: "20px",
+                    width: "76%",
+                    border: "3px solid green",
+                    padding: "10px",
+                    marginLeft: "40px",
+                    fontSize: "20px",
                   }}
                   required
                 />
@@ -161,15 +163,15 @@ class SignUp extends PureComponent {
                   name="dob"
                   onChange={this.handleChange}
                   type="text"
-                  placeholder="Date of Birth"
+                  placeholder="Date of Birth YYYY-MM-DD"
                   className="form-control form-control-lg"
                   style={{
                     margin: "auto",
-                      width: "76%",
-                      border: "3px solid green",
-                      padding: "10px",
-                      marginLeft: "40px",
-                      fontSize: "20px",
+                    width: "76%",
+                    border: "3px solid green",
+                    padding: "10px",
+                    marginLeft: "40px",
+                    fontSize: "20px",
                   }}
                   required
                 />
@@ -179,23 +181,22 @@ class SignUp extends PureComponent {
                   type="submit"
                   style={{
                     margin: "auto",
-                      width: "35%",
-                      border: "3px solid green",
-                      padding: "10px",
-                      marginLeft: "128px",
-                      fontSize: "20px",
+                    width: "35%",
+                    border: "3px solid green",
+                    padding: "10px",
+                    marginLeft: "128px",
+                    fontSize: "20px",
                     backgroundImage: "linear-gradient(#eacda3, #d6ae7b)",
                   }}
                 />
               </div>
             </form>
           </div>
-          </div>
+        </div>
       );
     } else {
       return (
         <div>
-        
           <h1>{this.state.respdata} </h1>
         </div>
       );

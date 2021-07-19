@@ -4,7 +4,7 @@ import "./App.css";
 import Home from "./components/pages/Home";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Registration from "./components/pages/Registration";
-
+import UserAdmin from "./components/pages/UserAdmin";
 import SignUp from "./components/pages/SignUp";
 import Login from "./components/pages/Login";
 import Festival from "./components/pages/Festival";
@@ -12,7 +12,7 @@ import FestivalAdmin from "./components/pages/FestivalAdmin";
 import Feedback from "./components/pages/Feedback";
 import AddFestival from "./components/pages/AddFestival";
 import Footer from "./components/Footer";
-import Payment from "./components/pages/Payment ";
+import Payment from "./components/pages/Payment";
 
 function App() {
   return (
@@ -24,6 +24,7 @@ function App() {
           <Route path="/Festival" component={Festival} />
           <Route path="/FestivalAdmin" component={FestivalAdmin} />
           <Route path="/services" component={Registration} />
+          <Route path="/UserAdmin" component={UserAdmin} />
           <Route path="/products" component={Payment} />
           <Route path="/feedback" component={Feedback} />
           <Route path="/sign-up" component={SignUp} />

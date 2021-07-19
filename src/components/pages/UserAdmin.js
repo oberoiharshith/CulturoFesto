@@ -7,11 +7,11 @@ import {
   faStepForward,
 } from "@fortawesome/free-solid-svg-icons";
 import { axios } from "axios";
-class Festival extends React.Component {
+class UserAdmin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      festival: [],
+      userinfo: [],
       current: 1,
       next: 2,
     };
@@ -28,7 +28,7 @@ class Festival extends React.Component {
   nextPage = () => {
     if (
       this.state.current <
-      Math.ceil(this.state.festival.length / this.state.next)
+      Math.ceil(this.state.userinfo.length / this.state.next)
     ) {
       this.setState({
         current: this.state.current + 1,
@@ -37,10 +37,10 @@ class Festival extends React.Component {
   };
 
   componentDidMount() {
-    fetch("http://3.20.221.44:8082/festival/findAll")
+    fetch("http://3.20.221.44:8082/display")
       .then((response) => response.json())
 
-      .then((data) => this.setState({ festival: data }));
+      .then((data) => this.setState({ userinfo: data }));
   }
   //Course Delete (Incomplete)
   // deleteCourse = (courseId) => {
@@ -56,51 +56,45 @@ class Festival extends React.Component {
   //     });
   // };
   render() {
-    const { festival, current, next } = this.state;
+    const { userinfo, current, next } = this.state;
     const lastIndex = current * next;
     const firstIndex = lastIndex - next;
-    const currentUser = festival.slice(firstIndex, lastIndex); // switch between the pages
-    const totalPages = festival.length / next;
+    const currentUser = userinfo.slice(firstIndex, lastIndex); // switch between the pages
+    const totalPages = userinfo.length / next;
     return (
       <Card className="border border-dark bg-dark text-white text-center">
         <Card.Header>
           {" "}
-          <FontAwesomeIcon icon={faList} /> Festivals
+          <FontAwesomeIcon icon={faList} /> Userinfo
         </Card.Header>
         <Card.Body>
           <Table bordered hover striped variant="dark">
             <thead>
               <tr>
-                <th>Festival Id</th>
-                <th>Festival Name</th>
-                <th>Festival Region</th>
-                <th>Festival Venue</th>
-                <th>Adult Fee</th>
-                <th>Child Fee</th>
-                <th>Festival Date</th>
-                <th>Festival Food</th>
-                <th>Food Price Adult</th>
-                <th>Food Price Child</th>
+                <th>ID </th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Mobile</th>
+                <th>Date Of Birth</th>
+                <th>Password</th>
+                <th>Username</th>
               </tr>
             </thead>
             <tbody>
-              {festival.length === 0 ? (
+              {userinfo.length === 0 ? (
                 <tr align="center">
-                  <td colSpan="10">No Upcoming Festival </td>
+                  <td colSpan="7">No User Found </td>
                 </tr>
               ) : (
-                currentUser.map((festival) => (
+                currentUser.map((userinfo) => (
                   <tr>
-                    <td>{festival.festivalId}</td>
-                    <td>{festival.festivalName}</td>
-                    <td>{festival.festivalRegion}</td>
-                    <td>{festival.festivalVenue}</td>
-                    <td>{festival.festivalAmountAdult}</td>
-                    <td>{festival.festivalAmountChildren}</td>
-                    <td>{festival.festivalDate}</td>
-                    <td>{festival.fooditem}</td>
-                    <td>{festival.foodPriceAdult}</td>
-                    <td>{festival.foodPriceChildren}</td>
+                    <td>{userinfo.iDp}</td>
+                    <td>{userinfo.firstName}</td>
+                    <td>{userinfo.lastName}</td>
+                    <td>{userinfo.mobile}</td>
+                    <td>{userinfo.dob}</td>
+                    <td>{userinfo.gnPassword}</td>
+                    <td>{userinfo.gnUid}</td>
                   </tr>
                 ))
               )}
@@ -139,4 +133,4 @@ class Festival extends React.Component {
     );
   }
 }
-export default Festival;
+export default UserAdmin;
